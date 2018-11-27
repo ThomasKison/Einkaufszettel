@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ShoppingList"
-             x:Class="ShoppingList.MainPage">
-
+             xmlns:local="clr-namespace:ShoppingList" Title="Einkaufszettel"
+             x:Class="ShoppingList.Views.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Hinzufügen" Clicked="Add_Clicked" Icon="Add" />
+    </ContentPage.ToolbarItems>
     <ListView x:Name="shoppingListView" SelectionMode="None" SeparatorVisibility="Default" SeparatorColor="Silver">
         <ListView.ItemTemplate>
             <DataTemplate>
@@ -18,7 +20,7 @@
                         <Label Text="{Binding Quantity}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
                         <Label Grid.Column="1" Text="{Binding Unit}" FontSize="10" VerticalTextAlignment="Center" />
                         <Label Grid.Column="2" Text="{Binding Label}" VerticalTextAlignment="Center"/>
-                        <Button Grid.Column="3" Text="gekauft" VerticalOptions="Center" Clicked="Button_Clicked"/>
+                        <Button Grid.Column="3" Text="gekauft" VerticalOptions="Center" Clicked="Bought_Clicked"/>
                     </Grid>
                 </ViewCell>
             </DataTemplate>

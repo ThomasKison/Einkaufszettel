@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ShoppingList
+namespace ShoppingList.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -49,11 +49,16 @@ namespace ShoppingList
             shoppingListView.ItemsSource = _entries;
         }
         
-        private void Button_Clicked(object sender, EventArgs e)
+        private void Bought_Clicked(object sender, EventArgs e)
         {
             _entries.Remove((sender as Button)?.BindingContext as ShoppingListEntry);
             shoppingListView.ItemsSource = null;
             shoppingListView.ItemsSource = _entries;
+        }
+
+        private async void Add_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewEntryPage());
         }
     }
 }
