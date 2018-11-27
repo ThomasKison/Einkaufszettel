@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ShoppingList"
+             x:Class="ShoppingList.MainPage">
+
+    <ListView x:Name="shoppingListView" SelectionMode="None" SeparatorVisibility="Default" SeparatorColor="Silver">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                   <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Quantity}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1" Text="{Binding Unit}" FontSize="10" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="2" Text="{Binding Label}" VerticalTextAlignment="Center"/>
+                        <Button Grid.Column="3" Text="gekauft" VerticalOptions="Center" Clicked="Button_Clicked"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
