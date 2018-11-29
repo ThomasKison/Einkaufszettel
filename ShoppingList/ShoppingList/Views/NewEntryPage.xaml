@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ShoppingList.Views.NewEntryPage" Title="Neuer Eintrag">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Speichern" />
+        <ToolbarItem Text="Speichern" Command="{Binding SaveEntryCommand}" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <TableView Intent="Form">
+        <TableView Intent="Form" Margin="5">
             <TableView.Root>
                 <TableSection>
-                    <EntryCell Label="Artikel" />
-                    <EntryCell Label="Anzahl" Keyboard="Numeric" Text="1" />
-                    <EntryCell Label="Einheit" Text="Stck" />
-                    <EntryCell Label="Preis" Keyboard="Numeric" />
+                    <EntryCell Label="Artikel" Text="{Binding ShoppingListEntry.Label}" />
+                    <EntryCell Label="Anzahl" Keyboard="Numeric" Text="{Binding ShoppingListEntry.Quantity}" />
+                    <EntryCell Label="Einheit" Text="{Binding ShoppingListEntry.Unit}" />
+                    <EntryCell Label="Preis" Keyboard="Numeric" Text="{Binding ShoppingListEntry.Price}" />
                 </TableSection>
             </TableView.Root>
         </TableView>

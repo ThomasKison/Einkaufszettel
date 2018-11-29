@@ -6,11 +6,11 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Hinzufügen" Clicked="Add_Clicked" Icon="Add" />
     </ContentPage.ToolbarItems>
-    <ListView x:Name="shoppingListView" SelectionMode="None" SeparatorVisibility="Default" SeparatorColor="Silver">
+    <ListView x:Name="shoppingListView" ItemsSource="{Binding ShoppingListEntries}" SelectionMode="None" SeparatorVisibility="Default" SeparatorColor="Silver">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                   <Grid Margin="10">
+                   <Grid Margin="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40"/>
                             <ColumnDefinition Width="25"/>
@@ -20,7 +20,7 @@
                         <Label Text="{Binding Quantity}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
                         <Label Grid.Column="1" Text="{Binding Unit}" FontSize="10" VerticalTextAlignment="Center" />
                         <Label Grid.Column="2" Text="{Binding Label}" VerticalTextAlignment="Center"/>
-                        <Button Grid.Column="3" Text="gekauft" VerticalOptions="Center" Clicked="Bought_Clicked"/>
+                        <Button Grid.Column="3" Text="gekauft" VerticalOptions="Center" Command="{Binding Source={x:Reference shoppingListView}, BindingContext.ItemBoughtCommand}" CommandParameter="{Binding}" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>

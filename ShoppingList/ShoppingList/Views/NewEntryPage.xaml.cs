@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShoppingList.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace ShoppingList.Views
 		public NewEntryPage ()
 		{
 			InitializeComponent ();
+            BindingContext = new NewEntryPageViewModel();
 		}
-	}
+
+        private async void Save_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+    }
 }

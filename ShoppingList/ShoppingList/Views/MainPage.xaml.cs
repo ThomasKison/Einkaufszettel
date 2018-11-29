@@ -1,4 +1,5 @@
 ﻿using ShoppingList.Models;
+using ShoppingList.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,47 +15,16 @@ namespace ShoppingList.Views
         public MainPage()
         {
             InitializeComponent();
-            // load model
-           _entries = new List<ShoppingListEntry> {
-                new ShoppingListEntry {
-                    Label = "Milch",
-                    Price = 0.89m,
-                    Quantity = 10,
-                    Unit = "Stck",
-                    Store = "Edeka"
-                },
-                 new ShoppingListEntry {
-                    Label = "Nuss-Nougat-Creme",
-                    Price = 2.89m,
-                    Quantity = 1,
-                    Unit = "Stck",
-                    Store = "Edeka"
-                },
-                new ShoppingListEntry {
-                    Label = "Butter",
-                    Price = 0.89m,
-                    Quantity = 2,
-                    Unit = "Stck",
-                    Store = "Edeka"
-                }
-                ,
-                new ShoppingListEntry {
-                    Label = "Hackfleisch",
-                    Price = 18,
-                    Quantity = 0.5,
-                    Unit = "kg",
-                    Store = "Rewe"
-                }
-            };
-            shoppingListView.ItemsSource = _entries;
+            var mpvm = new MainPageViewModel();
+            shoppingListView.BindingContext = mpvm;
         }
         
-        private void Bought_Clicked(object sender, EventArgs e)
-        {
-            _entries.Remove((sender as Button)?.BindingContext as ShoppingListEntry);
-            shoppingListView.ItemsSource = null;
-            shoppingListView.ItemsSource = _entries;
-        }
+        //private void Bought_Clicked(object sender, EventArgs e)
+        //{
+        //    _entries.Remove((sender as Button)?.BindingContext as ShoppingListEntry);
+        //    shoppingListView.ItemsSource = null;
+        //    shoppingListView.ItemsSource = _entries;
+        //}
 
         private async void Add_Clicked(object sender, EventArgs e)
         {
