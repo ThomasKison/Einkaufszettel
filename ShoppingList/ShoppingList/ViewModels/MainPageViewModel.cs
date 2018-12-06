@@ -1,4 +1,5 @@
-﻿using ShoppingList.Models;
+﻿using ShoppingList.Interfaces;
+using ShoppingList.Models;
 using ShoppingList.Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,12 @@ namespace ShoppingList.ViewModels
 {
     class MainPageViewModel : ViewModelBase
     {
-        public MainPageViewModel()
+        private ICommand _newEntryCommand;
+       
+        private ICommand _editItemCommand;
+        private ICommand _itemBoughtCommand;
+
+        public MainPageViewModel(INavService navService) : base (navService)
         {
             Load();
         }
@@ -53,7 +59,6 @@ namespace ShoppingList.ViewModels
                 });
         }
 
-        private ICommand _itemBoughtCommand;
         public ICommand ItemBoughtCommand => _itemBoughtCommand ?? (_itemBoughtCommand = new Command<ShoppingListEntry>(ExecuteItemBoughtCommand));
 
         void ExecuteItemBoughtCommand(ShoppingListEntry sle)
@@ -61,17 +66,15 @@ namespace ShoppingList.ViewModels
             ShoppingListEntries.Remove(sle);
         }
 
-        private ICommand _editItemCommand;
         public ICommand EditItemCommand =>
             _editItemCommand ?? (_editItemCommand = new Command<ShoppingListEntry>(ExecuteEditItemCommand));
 
         async void ExecuteEditItemCommand(ShoppingListEntry entry)
         {
-           await NavService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(entry);
+           await _navService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(entry);
         }
 
-        private ICommand _newEntryCommand;
-        
+
         public ICommand NewEntryCommand =>
             _newEntryCommand ?? (_newEntryCommand = new Command(ExecuteNewEntryCommand));
 
@@ -79,7 +82,7 @@ namespace ShoppingList.ViewModels
         {
             var newSle = new ShoppingListEntry();
             ShoppingListEntries.Add(newSle);
-            await NavService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(newSle);
+            await _navService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(newSle);
         }
 
         public ObservableCollection<ShoppingListEntry> ShoppingListEntries { get; } = new ObservableCollection<ShoppingListEntry>();

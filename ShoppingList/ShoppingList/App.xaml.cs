@@ -31,5 +31,7 @@ namespace ShoppingList
         {
             // Handle when your app resumes
         }
+
+        
     }
 }

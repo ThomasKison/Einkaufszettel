@@ -1,4 +1,5 @@
-﻿using ShoppingList.Models;
+﻿using CommonServiceLocator;
+using ShoppingList.Models;
 using ShoppingList.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace ShoppingList.Views
         public MainPage()
         {
             InitializeComponent();
-            
-            var mpvm = new MainPageViewModel();
-            BindingContext = mpvm;
             Bootstrapper.DoBootstrapping(Navigation);
+
+            var mpvm = ServiceLocator.Current.GetInstance<MainPageViewModel>();
+            BindingContext = mpvm;
+            
         }
 
         

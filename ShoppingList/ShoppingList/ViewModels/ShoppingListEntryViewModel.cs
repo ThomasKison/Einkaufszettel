@@ -11,7 +11,7 @@ namespace ShoppingList.ViewModels
 {
     public class ShoppingListEntryViewModel : ViewModelBase, IInit<ShoppingListEntry>
     {
-        #region properties
+        #region bindable properties
         private string _label;
         private double _quantity;
         private string _unit;
@@ -47,9 +47,8 @@ namespace ShoppingList.ViewModels
 
         #endregion
 
-        public ShoppingListEntryViewModel()
+        public ShoppingListEntryViewModel(INavService navService) : base(navService)
         {
-            
         }
 
         private ShoppingListEntry _shoppingListEntry;
@@ -80,7 +79,7 @@ namespace ShoppingList.ViewModels
             _shoppingListEntry.Quantity = Quantity;
             _shoppingListEntry.Store = Store;
             _shoppingListEntry.Unit = Unit;
-            NavService.GoBack();
+            _navService.GoBack();
         }
 
         public void Init(ShoppingListEntry param)
