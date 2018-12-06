@@ -11,17 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace ShoppingList.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewEntryPage : ContentPage
+	public partial class EditEntryPage : ContentPage
 	{
-		public NewEntryPage ()
+		public EditEntryPage()
 		{
-			InitializeComponent ();
-            BindingContext = new NewEntryPageViewModel();
+			InitializeComponent();
 		}
+        
 
-        private async void Save_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+      
     }
 }

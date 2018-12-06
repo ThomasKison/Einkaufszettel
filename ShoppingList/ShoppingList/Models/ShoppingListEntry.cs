@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingList.Models
 {
-    class ShoppingListEntry
+    public class ShoppingListEntry : BindableBase
     {
         public string Label { get; set; } = "";
         public double Quantity { get; set; } = 1;

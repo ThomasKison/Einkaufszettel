@@ -1,4 +1,5 @@
 ﻿using ShoppingList.Models;
+using ShoppingList.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -58,6 +59,27 @@ namespace ShoppingList.ViewModels
         void ExecuteItemBoughtCommand(ShoppingListEntry sle)
         {
             ShoppingListEntries.Remove(sle);
+        }
+
+        private ICommand _editItemCommand;
+        public ICommand EditItemCommand =>
+            _editItemCommand ?? (_editItemCommand = new Command<ShoppingListEntry>(ExecuteEditItemCommand));
+
+        async void ExecuteEditItemCommand(ShoppingListEntry entry)
+        {
+           await NavService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(entry);
+        }
+
+        private ICommand _newEntryCommand;
+        
+        public ICommand NewEntryCommand =>
+            _newEntryCommand ?? (_newEntryCommand = new Command(ExecuteNewEntryCommand));
+
+        async void ExecuteNewEntryCommand()
+        {
+            var newSle = new ShoppingListEntry();
+            ShoppingListEntries.Add(newSle);
+            await NavService.NavigateTo<ShoppingListEntryViewModel, ShoppingListEntry>(newSle);
         }
 
         public ObservableCollection<ShoppingListEntry> ShoppingListEntries { get; } = new ObservableCollection<ShoppingListEntry>();

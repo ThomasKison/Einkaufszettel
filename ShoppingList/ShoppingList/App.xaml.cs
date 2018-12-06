@@ -1,4 +1,5 @@
-﻿using ShoppingList.Views;
+﻿using ShoppingList.Services;
+using ShoppingList.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,9 +12,10 @@ namespace ShoppingList
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainPage());
         }
+
+       
 
         protected override void OnStart()
         {
