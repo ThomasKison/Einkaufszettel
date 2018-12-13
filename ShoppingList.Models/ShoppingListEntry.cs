@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,8 @@ namespace ShoppingList.Models
         private string _unit="Stck";
         private decimal _price;
         private string _store;
-
+        [BsonId]
+        public Guid Id { get; set; }
         public string Label
         {
             get { return _label; }

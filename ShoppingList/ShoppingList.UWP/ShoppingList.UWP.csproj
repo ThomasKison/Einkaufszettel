@@ -147,6 +147,10 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ShoppingList.Models\ShoppingList.Models.csproj">
+      <Project>{0f473738-a09a-49bc-87ad-a083a0d592db}</Project>
+      <Name>ShoppingList.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingList\ShoppingList.csproj">
       <Project>{88AA325F-1264-4892-8786-245718BCFB13}</Project>
       <Name>ShoppingList</Name>
